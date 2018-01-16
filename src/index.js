@@ -22,7 +22,7 @@ class TextField extends React.Component {
           name={name} 
           placeholder={name} 
           value={value} 
-          onChange={this.handleChange} />
+          onChange={e => {this.props.onValueChange(e.target.value)}} />
     );
   }
 }
@@ -30,8 +30,9 @@ class TextField extends React.Component {
 class MSG01s extends React.Component {
   render() {
     const msgs = this.props.msgs;
-    const msgTxt = msgs.length > 0 
-        ? msgs.reduce((acc, curr) => {return ""+acc+", "+curr.msg;})
+    const msgTxt = msgs && msgs.length > 0
+        ? msgs.reduce((acc, curr) => {
+          return ""+acc+", "+curr.msg;},"")
         : "--";
     return (
       <td>{msgTxt}</td>
